@@ -7,7 +7,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
+ARG GIT_COMMIT=local
+ENV GIT_COMMIT=$GIT_COMMIT
+
 RUN python train.py
+RUN python -m pytest -v
 
 EXPOSE 8000
 
